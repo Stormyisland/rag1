@@ -22,5 +22,14 @@ class RAGApplication:
     # Create GUI elements 
     self.create_wigets()
 
+  def create_wigets(self):
+    # document input section
+    doc-frame = tk.LabelFrame(self.root, text="Documents" , padx=5, pady=5)
+    doc_frame.pack(padx=10,pady5, fill="x")
+
+    self.doc_text
+
+button_frame.
+
 
                           
