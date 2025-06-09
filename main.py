@@ -29,7 +29,65 @@ class RAGApplication:
 
     self.doc_text
 
-button_frame.
+    button_frame = tk.Frame(doc_frame(doc_frame)
+    button_frame.pack(fill="x")
+
+    load_btn = tk.Button(button_frame, text="Load Documents", command=self.load_documents)
+    load_btn.pack(side="left", padx=5)
+
+    clear_btn = tk.Button(button_frsme, text="Clear Documents", command=self.clear_documents)
+    clear_btn.pack(side="left", padx=5)
+
+    # Query section
+    query_frame= tk.LableFrame(self.root text ="Query", padx=5. pady=5)
+    query_frame.pack(padx=10, pady=5, fill="x")
+
+    self.query_entry = tk.Entry(query_frame)
+    self.query_entry.pack(padx=10, pady=5, fill="both", expand=True)
+
+  def load_documents(self):
+    file_paths = filedialog.askopenfilenames(
+      title="Select Documents"
+      filetype=(("Text files", "*.txt"), ("All files", "*.*))
+    )
+
+    if not file_paths:
+        return
+    for file_path in file_paths:
+      with open(file_path, "r", encoding="utf-8") as f:
+        content = f.read()
+        self .documents.append(content)
+        self.doc_text.insert(tk.END, f"Loaded: {file_path}\n{content}\n\n")
+
+    # Create emmbeddings for all documents
+    if self.docments = []
+    self.documents_embeddings = None
+    self.doc_text.delete(1.0, tk.END)
+    self.answer_text.delete(1.0, tk.END)
+
+ def process_query(self):
+   query = self.query_entry.get()(
+     if not query:
+     return
+
+if not self.documents:
+   self.answer_text.delet(1.0, tk.END)
+   self.answer_text.insert(tk.END, "No documents loaded. Please load documents first."
+   return
+
+    # Embed the query 
+    query_emdedding = self.embedding_model.encode([query])
+
+    
+      
+
+
+
+        
+    
+                      
+    
+                            
 
 
                           
