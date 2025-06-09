@@ -12,22 +12,23 @@ class RAGApplication:
     self.root.title("RAG Application")
 
     # Initalize models
-    self emmbedding_model = sentanceTransformer('all-MiniLM-l6-v2')
-    self.generator = pipeline('text-generation' , model= 'gpt2')
+    self emmbedding_model = SentanceTransformer('all-MiniLM-L6-v2')
+    self.generator = pipeline('text-generation', model= 'gpt2')
     
     # Document storage 
     self.documents = []
-    self.documents = None
+    self.documents_embeddings = None
     
     # Create GUI elements 
     self.create_wigets()
 
   def create_wigets(self):
-    # document input section
-    doc-frame = tk.LabelFrame(self.root, text="Documents" , padx=5, pady=5)
-    doc_frame.pack(padx=10,pady5, fill="x")
+    # Document input section
+    doc_frame = tk.LabelFrame(self.root, text="Documents" , padx=5, pady=5)
+    doc_frame.pack(padx=10,pady=5, fill="x")
 
-    self.doc_text
+    self.doc_text = scrolledtext.ScrollText(doc_frame,height=10)
+    self.doc_text.pack(padx, pady5, fill= "x")
 
     button_frame = tk.Frame(doc_frame(doc_frame)
     button_frame.pack(fill="x")
@@ -97,11 +98,18 @@ if not self.documents:
     truncation=True
     )[0]['generated_text.split("Answeer:")[1].strip()
 
-# Display rsults
-self.answer_text.delete(1.0, tk.END)
-self.answers-text.insert(tk.END, f"Question: {query}\n\n'")
-self.answer_text.insert(tk.END, f"Most relavntdocuments:\n{most_similar_doc}\n\n")
-self.answer_text.insert(tk.END, f"Answer:\n{answer}")
+    # Display rsults
+    self.answer_text.delete(1.0, tk.END)
+    self.answers-text.insert(tk.END, f"Question: {query}\n\n'")
+    self.answer_text.insert(tk.END, f"Most relavntdocuments:\n{most_similar_doc}\n\n")
+    self.answer_text.insert(tk.END, f"Answer:\n{answer}")
+
+if __name__=="__main__":
+  root =tk.Tk()
+app = RAGApplication(root)
+root.mainloop()
+
+
 
 
 
