@@ -78,6 +78,41 @@ if not self.documents:
     # Embed the query 
     query_emdedding = self.embedding_model.encode([query])
 
+    # Embed the query
+    query_embedding = self.embeddiing_model([query])
+
+    # calculate similarity with documents 
+    similarities = cosine_similarity(query_embedding, self.document_embedings)
+    most_similaritys_idx = np.argmax(similarities)
+    most_similar_doc = sself.documents[most_similar_idx]
+
+    # Generate awnserusing the most relevent document as context
+    propmt = f'Document: {most_similar_doc}\n\nQuestion: {query}\nAnswer:"
+
+    geneerate_text = self.generator(
+    prompt,
+    max_lenght=200,
+    num_return_sequences=1,
+    temratture=0.7,
+    truncation=True
+    )[0]['generated_text.split("Answeer:")[1].strip()
+
+# Display rsults
+self.answer_text.delete(1.0, tk.END)
+self.answers-text.insert(tk.END, f"Question: {query}\n\n'")
+self.answer_text.insert(tk.END, f"Most relavntdocuments:\n{most_similar_doc}\n\n")
+self.answer_text.insert(tk.END, f"Answer:\n{answer}")
+
+
+
+
+
+
+
+
+  
+
+
     
       
 
